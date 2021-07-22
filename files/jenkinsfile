@@ -1,0 +1,46 @@
+pipeline {
+
+  agent any
+
+  environment {
+    ACCESS_KEY = credentials('terraform-cred')
+  }
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        checkout scm
+        sh 'mkdir -p creds' 
+        sh 'echo $ACCESS_KEY | base64 -d > (credpath).json'
+      }
+    }
+
+    stage('TF Init-Plan') {
+      steps {
+        container('terraform') {
+          sh 'terraform init'
+          sh 'terraform plan -out s3web'
+        }
+      }      
+    }
+
+    stage('Approval') {
+      steps {
+        script {
+          def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+        }
+      }
+    }
+
+    stage('TF Apply') {
+      steps {
+        container('terraform') {
+          sh 'terraform apply -input=false s3web'
+        }
+      }
+    }
+
+  } 
+
+}
