@@ -8,13 +8,13 @@ pipeline {
 
   stages {
 
-    stage('Checkout') {
-      steps {
-        checkout scm
-        sh 'mkdir -p creds' 
-        sh 'echo $ACCESS_KEY | base64 -d > (credpath).json'
-      }
-    }
+ #   stage('Checkout') {
+ #     steps {
+ #       checkout scm
+ #       sh 'mkdir -p creds' 
+ #       sh 'echo $ACCESS_KEY | base64 -d > (credpath).json'
+ #     }
+ #   }
 
     stage('TF Init-Plan') {
       steps {
