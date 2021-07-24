@@ -22,4 +22,4 @@ resource "aws_s3_bucket_object" "object" {
   key    = "index.html"
   source = "./files/index.html"
 
-depends_on = "aws_s3_bucket.website"
+depends_on = [aws_s3_bucket.website]
