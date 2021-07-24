@@ -11,10 +11,8 @@ pipeline {
 
     stage('TF Init-Plan') {
       steps {
-        container('terraform') {
           sh 'terraform init'
           sh 'terraform plan -out s3web'
-        }
       }      
     }
 
