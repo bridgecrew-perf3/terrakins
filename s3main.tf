@@ -20,6 +20,6 @@ module "website" {
 resource "aws_s3_bucket_object" "object" {
   bucket = var.domain_name
   key    = "index.html"
-  source = ".files/index.html"
+  source = "./files/index.html"
 
 depends_on = "aws_s3_bucket.website"
