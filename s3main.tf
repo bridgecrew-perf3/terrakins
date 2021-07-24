@@ -23,3 +23,4 @@ resource "aws_s3_bucket_object" "object" {
   source = "./files/index.html"
 
 depends_on = [aws_s3_bucket.website]
+}
