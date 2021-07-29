@@ -6,7 +6,6 @@ variable "aws_region" {
 
 provider "aws" {
   region  = var.aws_region
-  version = "~> 2.52"
 }
 
 resource "null_resource" "remove_and_upload_to_s3" {

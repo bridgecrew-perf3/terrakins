@@ -13,8 +13,8 @@ pipeline {
     stage('TF Init-Plan') {
       steps {
           sh '/usr/local/bin/terraform fmt'
-          sh '/usr/local/bin/terraform validate'
           sh '/usr/local/bin/terraform init'
+          sh '/usr/local/bin/terraform validate'
           sh '/usr/local/bin/terraform plan -out s3web'
       }      
     }
