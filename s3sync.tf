@@ -10,6 +10,6 @@ provider "aws" {
 
 resource "null_resource" "remove_and_upload_to_s3" {
   provisioner "local-exec" {
-    command = "aws s3 sync /Users/cedricniamba/Desktop/s3synctest.txt s3:/testop1/s3synctest.txt"
+    command = "/usr/local/bin/aws s3 sync /Users/cedricniamba/Desktop/s3synctest.txt s3:/testop1/s3synctest.txt"
   }
 }
