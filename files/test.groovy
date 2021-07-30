@@ -1,6 +1,6 @@
 package com.latch.aws
 
-def s3Sync(options, src, dst) {
+def s3Sync {
   withEnv(["AWS_DEFAULT_REGION=${options.region}"]) {
     withCredentials([[$class: "AmazonWebServicesCredentialsBinding", credentialsId: options.credentials]]) {
       sh """
@@ -25,12 +25,7 @@ pipeline {
     AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     AWS_SESSION_TOKEN = credentials ('AWS_SESSION_TOKEN')
   }
-    stages {
-      stage ('Configure Environment') {
-        steps {
           script {
             sh '/usr/local/bin/aws s3 sync /Users/cedricniamba/Desktop/s3test/. s3://testop1'
           }
-        }
-      }
-    }
+}
