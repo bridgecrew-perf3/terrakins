@@ -9,7 +9,7 @@ buildscript {
     }
 }
 
-import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
+//import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
 
 task deploy(type: S3Sync){
     description = "Deploys my site on a s3 bucket."
