@@ -1,7 +1,5 @@
 package com.latch.aws
 
-def s3_sync(String COMPARE_BRANCH) {
-    echo "jenkinsfile"}
 def s3Sync(options, src, dst) {
   withEnv(["AWS_DEFAULT_REGION=${options.region}"]) {
     withCredentials([[$class: "AmazonWebServicesCredentialsBinding", credentialsId: options.credentials]]) {
