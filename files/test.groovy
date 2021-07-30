@@ -47,4 +47,4 @@ service.putObject(bucket, fileObject)
 expiryTime = new Date() + 1 // 24 hours from current date
 link = service.createSignedGetUrl(bucket.name, fileObject.key, expiryTime)
 println "$fileName : $link"
-
+}
