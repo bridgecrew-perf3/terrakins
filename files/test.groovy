@@ -1,22 +1,5 @@
 package com.latch.aws
 
-def s3Sync {
-  withEnv(["AWS_DEFAULT_REGION=${options.region}"]) {
-    withCredentials([[$class: "AmazonWebServicesCredentialsBinding", credentialsId: options.credentials]]) {
-      sh """
-      docker run \\
-        --rm \\
-        -e AWS_SECRET_ACCESS_KEY \\
-        -e AWS_ACCESS_KEY_ID \\
-        -e AWS_DEFAULT_REGION \\
-        -v "\$(pwd):/files" \\
-        --workdir="/files" \\
-        anigeo/awscli \\
-          s3 sync ${options.s3SyncArgs ?: ''} "${src}" "${dst}"
-      """
-    }
-  }
-}
 pipeline {
     agent any 
 
