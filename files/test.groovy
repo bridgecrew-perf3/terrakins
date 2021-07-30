@@ -19,7 +19,6 @@ def s3Sync(options, src, dst) {
     }
   }
 }
-@Library {MPL mansonry}
 pipeline {
     agent any 
     stages {
