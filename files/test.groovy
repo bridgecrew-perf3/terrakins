@@ -21,6 +21,12 @@ def s3Sync(options, src, dst) {
 }
 pipeline {
     agent any 
+
+  environment {
+    AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    AWS_SESSION_TOKEN = credentials ('AWS_SESSION_TOKEN')
+  }
     stages {
         stage('Build') { 
             steps {
@@ -36,15 +42,4 @@ pipeline {
         }
       }
     }
-
-credentials = new AWSCredentials(accessKey, secretKey)
-service = new RestS3Service(credentials)
-bucket = new S3Bucket(bucketName)
-file = new File(fileName)
-fileObject = new S3Object(file)
-fileObject.key = fileName
-service.putObject(bucket, fileObject)
-expiryTime = new Date() + 1 // 24 hours from current date
-link = service.createSignedGetUrl(bucket.name, fileObject.key, expiryTime)
-println "$fileName : $link"
 }
