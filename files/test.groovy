@@ -1,4 +1,4 @@
-#package com.latch.aws
+package com.latch.aws
 
 def s3_sync(String COMPARE_BRANCH) {
     echo "jenkinsfile"}
